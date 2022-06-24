@@ -1,1 +1,2 @@
 testuser, testpass
+testuser2, testpass2

@@ -14,19 +14,42 @@ while True:
     else: 
         break
 
-#If user chose 1, ask for user name and password and
-# - validate username and password combination in the users.txt file
-# - if not valid combination reprompt the user
-# - if valid, then move on to prompt for student data
-#If user chose 2, ask for username and password and
-# - validate username and password length. If valid, wrtie to users.txt file
+if user_option == "1":
+    while True:
+        #If user chose 1, ask for user name and password and  
+        user_name = input("Please enter your username: ")
+        user_pass = input("Please enter your password: ")
+        # - validate username and password combination in the users.txt file
+        #open the users files
+        user_file = open("users.txt", "r")
+        user_found = False
+        for line in user_file:
+            credentials = line.split(", ")
+            if user_name == credentials[0] and user_pass == credentials[1].rstrip():
+                print(f"User {user_name} successfully logged in\n")
+                user_found = True
+                break
+
+        if user_found:
+            print(f"User {user_name} successfully logged in\n")
+            break
+        else:
+            print(f"User {user_name} not found\n")
+
+
+        #read the lines from the file
+        #compare username and password for a match
+        # - if not valid combination reprompt the user
+        # - if valid then move on to the next prompt
+
+#If user chose 2, ask for user name and password and
+# - validate username and password length. If valid, write to users.txt file
 # - and move on
 #If not valid reprompt user
 
 #Ask user how many students to enter data for
 #Prompt user to enter student name and number score
 #Store data somewhere
-#Convert number score to a letter grade
-
-#Print student data(name, score, grade)
+#Convert number to a letter grade
+#Print student data
 #Calculate and print class average
