@@ -55,7 +55,7 @@ elif user_option == "2":
         password_length = len(user_pass)
         if (username_length >= 4 and username_length <= 12) and (password_length >= 6 and password_length <= 16):
             user_file = open("users.txt", "a")
-            user_file.write(f"{user_name}, {user_pass}\n")
+            user_file.write(f"\r{user_name}, {user_pass}")
             user_file.close()
             print("\nAccount successfully created\n")
             # - and move on
@@ -69,15 +69,31 @@ list_of_student_names = []
 list_of_student_scores = []
 list_of_letter_grades = []
 #Ask user how many students to enter data for
-number_of_students = input("How many student's grades would you like to calculate? ")
+number_of_students = int(input("How many student's grades would you like to calculate? "))
  
-for num in range(number_of_students):
+for counter in range(number_of_students):
     #Prompt user to enter student name and number score
-    student_names = input("What is the name of the student? ")
-    Store(student_names) in list_of_student_names
-    student_score = input("What is the student's score? ")
-    Store(student_score) in list_of_student_scores
-#Store data somewhere
-#Convert number to a letter grade
+    student_name = input("What is the name of the student? ")
+    student_score = float(input("What is the student's score? "))
+    #Store data in the lists
+    list_of_student_names.append(student_name)
+    list_of_student_scores.append(student_score)
+    #Convert the current number to a letter grade and store in the letter grade list
+    if student_score >= 60 and student_score < 70:
+        list_of_letter_grades.append("D")
+    elif student_score >= 70 and student_score < 80:
+        list_of_letter_grades.append("C")
+    elif student_score >= 80 and student_score < 90:
+        list_of_letter_grades.append("B")
+    elif student_score >= 90:
+        list_of_letter_grades.append("A")
+    else:
+        list_of_letter_grades.append("F")
+
 #Print student data
+for index in range(len(list_of_student_names)):
+    print(f"{list_of_student_names[index]} : {list_of_student_scores[index]} : {list_of_letter_grades[index]}")
+
+
+
 #Calculate and print class average
