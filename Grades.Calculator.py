@@ -1,6 +1,6 @@
 #Print the menu
 from ast import Store
-
+import statistics
 
 print("Select option from Menu\n-----------------------")
 print("1. Login")
@@ -94,6 +94,6 @@ for counter in range(number_of_students):
 for index in range(len(list_of_student_names)):
     print(f"{list_of_student_names[index]} : {list_of_student_scores[index]} : {list_of_letter_grades[index]}")
 
-
-
 #Calculate and print class average
+class_average = statistics.mean(list_of_student_scores)
+print(f"Average: {class_average}")
