@@ -1,4 +1,3 @@
-from ast import Store
 import statistics
 
 def print_main_menu():
@@ -20,6 +19,32 @@ def get_user_option():
             break
     return user_option
 
+def login_user(u_name, u_pass):
+# - validate username and password combination in the users.txt file
+    #open the users files
+    user_file = open("users.txt", "r")
+    user_found = False
+
+            #read the lines from the file
+    for line in user_file:
+        credentials = line.split(", ")
+    #compare username and password for a match
+        if u_name == credentials[0] and u_pass == credentials[1].rstrip():
+            print(f"User {u_name} successfully logged in\n")
+            user_found = True
+            break
+    return user_found
+
+def create_user(u_name, u_pass):
+    pass
+
+def validate_username_or_password(user_credential, min_length, max_length):
+    if (user_credential >= min_length and user_credential <= max_length):
+        return True
+    else:
+        #If not valid reprompt user
+        print("ERROR: Username and password must be within the character limit\n")   
+        return False
 def main():
     print_main_menu()
     user_option = get_user_option()
@@ -28,21 +53,9 @@ def main():
             #If user chose 1, ask for user name and password and  
             user_name = input("Please enter your username: ")
             user_pass = input("Please enter your password: ")
-            # - validate username and password combination in the users.txt file
-            #open the users files
-            user_file = open("users.txt", "r")
-            user_found = False
+            user_logged_in = login_user(user_name, user_pass)
 
-            #read the lines from the file
-            for line in user_file:
-                credentials = line.split(", ")
-                #compare username and password for a match
-                if user_name == credentials[0] and user_pass == credentials[1].rstrip():
-                    print(f"User {user_name} successfully logged in\n")
-                    user_found = True
-                    break
-
-            if user_found:
+            if user_logged_in:
                 # - if valid then move on to the next prompt
                 print(f"User {user_name} successfully logged in\n")
                 break
